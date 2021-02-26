@@ -10,21 +10,16 @@ import org.springframework.web.client.RestTemplate;
 
 import com.jopaulo.rhpagamento.entities.Pagamento;
 import com.jopaulo.rhpagamento.entities.Trabalhador;
+import com.jopaulo.rhpagamento.feignclients.TrabalhadorFeignClient;
 
 @Service
 public class PagamentoService {
 	
-	@Value("${rh-trabalhador.host}")
-	private String trabalhadorHost;
-	
 	@Autowired
-	private RestTemplate restTemplate;
+	private TrabalhadorFeignClient trabalhadorFeignClient;
 
-	public Pagamento getPagamento(long trabalhadorId, int dias) {
-		Map<String, String> uriVaribles = new HashMap<>();
-		uriVaribles.put("id", ""+trabalhadorId);
-		
-		Trabalhador trabalhador = restTemplate.getForObject(trabalhadorHost + "/trabalhadores/{id}", Trabalhador.class, uriVaribles);  
+	public Pagamento getPagamento(long trabalhadorId, int dias) {		
+		Trabalhador trabalhador = trabalhadorFeignClient.findById(trabalhadorId).getBody();
 		return new Pagamento(trabalhador.getNome(), trabalhador.getDiaTrabalhado(), dias);
 	}
 }
