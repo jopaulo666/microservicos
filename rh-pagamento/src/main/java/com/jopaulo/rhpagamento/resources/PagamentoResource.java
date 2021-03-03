@@ -26,7 +26,7 @@ public class PagamentoResource {
 	}
 	
 	public ResponseEntity<Pagamento> getPagamentoAlternativo(Long trabalhadorId, @PathVariable Integer dias){
-		Pagamento pagamento  = new Pagamento("Juca", 500.0, dias);
+		Pagamento pagamento  = new Pagamento("Erro no servidor", 0.0, dias);
 		return ResponseEntity.ok(pagamento);
 	}
 }
