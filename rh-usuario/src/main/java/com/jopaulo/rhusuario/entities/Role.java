@@ -27,5 +27,7 @@ public class Role implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@EqualsAndHashCode.Include
 	private String roleNome;
 }

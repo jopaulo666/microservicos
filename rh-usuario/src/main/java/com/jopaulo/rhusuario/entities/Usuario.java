@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,9 +33,14 @@ public class Usuario implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
+	
 	private String nome;
+	
+	@Column(unique = true)
 	private String email;
+	
 	private String senha;
 	
 	@ManyToMany(fetch = FetchType.EAGER) // carrega os dados dos perfis junto com o usuário
