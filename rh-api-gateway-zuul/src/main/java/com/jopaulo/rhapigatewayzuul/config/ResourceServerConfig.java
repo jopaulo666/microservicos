@@ -20,7 +20,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String[] OPERATOR = { "/rh-trabalhador/**" };
 	
-	private static final String[] ADMIN = { "/rh-pagamento/**, /rh-usuario/**" };
+	private static final String[] ADMIN = { "/rh-pagamento/**", "/rh-usuario/**", "/actuator/**", "/rh-trabalhador/actuator/**", "/rh-oauth/actuator/**" };
 
 	// lê o token
 	@Override
